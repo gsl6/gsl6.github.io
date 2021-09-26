@@ -6,7 +6,7 @@
   <link href="https://gsl6.github.io/atom.xml" rel="self"/>
   
   <link href="https://gsl6.github.io/"/>
-  <updated>2021-09-26T11:03:10.460Z</updated>
+  <updated>2021-09-26T14:03:50.408Z</updated>
   <id>https://gsl6.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>springboots2</title>
+    <link href="https://gsl6.github.io/2021/09/26/springboots2/"/>
+    <id>https://gsl6.github.io/2021/09/26/springboots2/</id>
+    <published>2021-09-26T14:03:33.000Z</published>
+    <updated>2021-09-26T14:03:50.408Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&amp;lt;! –more–&amp;gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="javajichu" scheme="https://gsl6.github.io/categories/javajichu/"/>
+    
+    
+    <category term="java" scheme="https://gsl6.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue</title>
+    <link href="https://gsl6.github.io/2021/09/26/vue/"/>
+    <id>https://gsl6.github.io/2021/09/26/vue/</id>
+    <published>2021-09-26T14:02:39.000Z</published>
+    <updated>2021-09-26T14:03:10.875Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&amp;lt;! –more–&amp;gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="js" scheme="https://gsl6.github.io/categories/js/"/>
+    
+    
+    <category term="js" scheme="https://gsl6.github.io/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>javascripts进阶</title>
