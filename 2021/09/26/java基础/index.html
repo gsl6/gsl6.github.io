@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gsl6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="day17 【单例模式、多例模式、枚举、工厂模式】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="day17 【单例模式、多例模式、枚举、工厂模式】">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200517120844827.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/1566701678583.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232059055.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232559924.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232640969.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232706997.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232729955.png">
+<meta property="og:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232800944.png">
+<meta property="article:published_time" content="2021-09-26T10:20:40.000Z">
+<meta property="article:modified_time" content="2021-09-26T10:31:35.790Z">
+<meta property="article:author" content="Gsl">
+<meta property="article:tag" content="springboot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200517120844827.png">
+
+<link rel="canonical" href="https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>java基础 | Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.png">
+      <meta itemprop="name" content="Gsl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-26 18:20:40 / 修改时间：18:31:35" itemprop="dateCreated datePublished" datetime="2021-09-26T18:20:40+08:00">2021-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="day17-【单例模式、多例模式、枚举、工厂模式】"><a href="#day17-【单例模式、多例模式、枚举、工厂模式】" class="headerlink" title="day17 【单例模式、多例模式、枚举、工厂模式】"></a>day17 【单例模式、多例模式、枚举、工厂模式】</h1><span id="more"></span>
+
+<h2 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h2><ul>
+<li>单例模式    <ul>
+<li>饿汉式</li>
+<li>懒汉式</li>
+</ul>
+</li>
+<li>多例模式</li>
+<li>枚举<ul>
+<li>定义枚举</li>
+<li>使用枚举</li>
+</ul>
+</li>
+<li>工厂模式</li>
+<li>Lombok插件</li>
+</ul>
+<h2 id="教学目标"><a href="#教学目标" class="headerlink" title="教学目标"></a>教学目标</h2><ul>
+<li><input disabled="" type="checkbox"> 能够说出单例设计模式的好处</li>
+<li><input disabled="" type="checkbox"> 能够说出多例模式的好处</li>
+<li><input disabled="" type="checkbox"> 能够定义枚举</li>
+<li><input disabled="" type="checkbox"> 能够使用工厂模式编写java程序</li>
+</ul>
+<h1 id="第一章-单例设计模式"><a href="#第一章-单例设计模式" class="headerlink" title="第一章 单例设计模式"></a>第一章 单例设计模式</h1><h2 id="知识点–-单例设计模式的概述"><a href="#知识点–-单例设计模式的概述" class="headerlink" title="知识点– 单例设计模式的概述"></a>知识点– 单例设计模式的概述</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>正常情况下一个类可以创建多个对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="comment">// 默认生成一个公共的空参构造方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试类</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 正常情况下一个类可以创建多个对象</span></span><br><span class="line">	Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line">	Person p2 = <span class="keyword">new</span> Person();</span><br><span class="line">	Person p3 = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是有些时候的某些类, 我们希望只能创建单一的一个对象, 这时候我们需要使用到单例设计模式, 下面我们来介绍一下单例设计模式.</p>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>单例设计模式的作用</li>
+<li>单例设计模式实现步骤</li>
+<li>单例设计模式的类型</li>
+</ul>
+<h3 id="讲解"><a href="#讲解" class="headerlink" title="讲解"></a>讲解</h3><h4 id="单例设计模式的作用"><a href="#单例设计模式的作用" class="headerlink" title="单例设计模式的作用"></a>单例设计模式的作用</h4><p>单例模式，是一种常用的软件设计模式。<strong>通过单例模式可以保证系统中，应用该模式的这个类只有一个实例</strong>。即一个类只有一个对象实例。</p>
+<h4 id="单例设计模式实现步骤"><a href="#单例设计模式实现步骤" class="headerlink" title="单例设计模式实现步骤"></a>单例设计模式实现步骤</h4><ol>
+<li>将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</li>
+<li>在该类内部产生一个唯一的实例化对象</li>
+<li>定义一个静态方法返回这个唯一对象。</li>
+</ol>
+<h4 id="例设计模式的类型"><a href="#例设计模式的类型" class="headerlink" title="例设计模式的类型"></a>例设计模式的类型</h4><p>根据实例化对象的时机单例设计模式又分为以下两种:</p>
+<ol>
+<li>饿汉单例设计模式</li>
+<li>懒汉单例设计模式</li>
+</ol>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>略</p>
+<h2 id="知识点–-饿汉式单例设计模式"><a href="#知识点–-饿汉式单例设计模式" class="headerlink" title="知识点– 饿汉式单例设计模式"></a>知识点– 饿汉式单例设计模式</h2><h3 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>掌握单例设计模式的书写</li>
+</ul>
+<h3 id="路径-1"><a href="#路径-1" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>单例设计模式 — 饿汉式</li>
+</ul>
+<h3 id="讲解-1"><a href="#讲解-1" class="headerlink" title="讲解"></a>讲解</h3><p>饿汉单例设计模式就是使用类的时候已经将对象创建完毕，不管以后会不会使用到该实例化对象，先创建了再说。很着急的样子，故被称为“饿汉模式”。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用饿汉式单例设计模式: 比较着急,不管要不要获取我这个类的对象,先创建了该对象再说</span></span><br><span class="line">    <span class="comment">// 1. 将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 在该类内部产生一个唯一的实例化对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Person p = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 定义一个静态方法返回这个唯一对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p1 = Person.getInstance();</span><br><span class="line">        Person p2 = Person.getInstance();</span><br><span class="line">        Person p3 = Person.getInstance();</span><br><span class="line"></span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println(p2);</span><br><span class="line">        System.out.println(p3);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>略</p>
+<h2 id="知识点–-懒汉式单例设计模式"><a href="#知识点–-懒汉式单例设计模式" class="headerlink" title="知识点– 懒汉式单例设计模式"></a>知识点– 懒汉式单例设计模式</h2><h3 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>掌握懒汉式单例设计模式的书写</li>
+</ul>
+<h3 id="路径-2"><a href="#路径-2" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>单例设计模式 — 懒汉式</li>
+</ul>
+<h3 id="讲解-2"><a href="#讲解-2" class="headerlink" title="讲解"></a>讲解</h3><p>懒汉单例设计模式就是调用getInstance()方法时实例才被创建，先不急着实例化出对象，等要用的时候才实例化出对象。不着急，故称为“懒汉模式”。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 懒汉式单例: 不着急,只要当你调用了getInstance静态方法获取对象的时候,就创建,其他时候不创建</span></span><br><span class="line">    <span class="comment">// 1. 将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 在该类内部产生一个唯一的实例化对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Person p ;<span class="comment">// 默认值为null</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 定义一个静态方法返回这个唯一对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Person <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 创建Person类的唯一对象</span></span><br><span class="line">        <span class="comment">// 判断一下,如果p这个成语变量的值为null,就创建,不为null,说明该对象已经创建了,直接返回即可</span></span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span>)&#123;</span><br><span class="line">            p = <span class="keyword">new</span> Person();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p1 = Person.getInstance();</span><br><span class="line">        Person p2 = Person.getInstance();</span><br><span class="line">        Person p3 = Person.getInstance();</span><br><span class="line"></span><br><span class="line">        System.out.println(p1);</span><br><span class="line">        System.out.println(p2);</span><br><span class="line">        System.out.println(p3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：懒汉单例设计模式在多线程环境下可能会实例化出多个对象，不能保证单例的状态，所以加上关键字：synchronized，保证其同步安全。</p>
+</blockquote>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p>单例模式可以保证系统中一个类只有一个对象实例。</p>
+<p>实现单例模式的步骤：</p>
+<ol>
+<li>将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</li>
+<li>在该类内部产生一个唯一的实例化对象，并且将其封装为private static类型的成员变量。</li>
+<li>定义一个静态方法返回这个唯一对象。</li>
+</ol>
+<h1 id="第二章-多例设计模式"><a href="#第二章-多例设计模式" class="headerlink" title="第二章 多例设计模式"></a>第二章 多例设计模式</h1><h2 id="知识点–多例设计模式"><a href="#知识点–多例设计模式" class="headerlink" title="知识点–多例设计模式"></a>知识点–多例设计模式</h2><h3 id="目标-3"><a href="#目标-3" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>掌握多例设计模式的书写</li>
+</ul>
+<h3 id="路径-3"><a href="#路径-3" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>多例设计模式的作用</li>
+<li>实现步骤</li>
+<li>实现代码</li>
+<li>测试结果</li>
+</ul>
+<h3 id="讲解-3"><a href="#讲解-3" class="headerlink" title="讲解"></a>讲解</h3><h4 id="多例设计模式的作用"><a href="#多例设计模式的作用" class="headerlink" title="多例设计模式的作用"></a>多例设计模式的作用</h4><p>多例模式，是一种常用的软件设计模式。通过多例模式可以保证系统中，应用该模式的类有<strong>固定数量</strong>的实例。多例类要自我创建并管理自己的实例，还要向外界提供获取本类实例的方法。</p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>​    1.创建一个类,  将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</p>
+<p>​    2.在该类内部产生固定数量的实例化对象 —-&gt; 集合</p>
+<p>​    3.提供一个静态方法来随机获取一个该类的实例化对象</p>
+<h4 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 使用多例设计模式: 保证程序运行期间该类只有固定数量的对象产生</span></span><br><span class="line">    <span class="comment">// 1.创建一个类,  将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.在该类内部产生固定数量的实例化对象 ----&gt; 集合  只能产生依次固定数量的对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.1 定义一个存放该类对象的集合</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ArrayList&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2.2 在静态代码块中,创建固定数量的对象,添加到集合中</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 创建固定数量的该类对象</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            Person p = <span class="keyword">new</span> Person();</span><br><span class="line">            list.add(p);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3.提高一个静态方法来随机获取一个该了的实例化对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个Random对象</span></span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">// 随机产生一个list集合的索引</span></span><br><span class="line">        <span class="keyword">int</span> index = r.nextInt(list.size());<span class="comment">// [0,3) 0,1,2</span></span><br><span class="line">        <span class="comment">// 根据索引获取对象</span></span><br><span class="line">        Person p = list.get(index);</span><br><span class="line">        <span class="comment">// 返回对象</span></span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            Person p1 = Person.getInstance();</span><br><span class="line">            System.out.println(p1);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200517120844827.png" alt="image-20200517120844827"></p>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><p>多例模式可以保证系统中一个类有固定个数的实例, 在实现需求的基础上, 能够提高实例的复用性.</p>
+<p>实现多例模式的步骤：</p>
+<ol>
+<li>创建一个类,  将构造方法私有化，使其不能在类的外部通过new关键字实例化该类对象。</li>
+<li>在类中定义存放类实例的list集合</li>
+<li>在类中提供静态代码块,在静态代码块中创建类的实例</li>
+<li>提供获取类实例的静态方法</li>
+</ol>
+<h1 id="第四章-枚举"><a href="#第四章-枚举" class="headerlink" title="第四章 枚举"></a>第四章 枚举</h1><h2 id="知识点–枚举的概述和定义"><a href="#知识点–枚举的概述和定义" class="headerlink" title="知识点–枚举的概述和定义"></a>知识点–枚举的概述和定义</h2><h3 id="目标-4"><a href="#目标-4" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>掌握枚举的定义和使用</li>
+</ul>
+<h3 id="路径-4"><a href="#路径-4" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>引入不使用枚举存在的问题</li>
+<li>枚举的概述</li>
+<li>枚举的定义</li>
+<li>枚举的使用</li>
+</ul>
+<h3 id="讲解-4"><a href="#讲解-4" class="headerlink" title="讲解"></a>讲解</h3><h4 id="不使用枚举存在的问题"><a href="#不使用枚举存在的问题" class="headerlink" title="不使用枚举存在的问题"></a>不使用枚举存在的问题</h4><p>假设我们要定义一个人类，人类中包含姓名和性别。通常会将性别定义成字符串类型，效果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 省略get/set/toString方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;男&quot;</span>);</span><br><span class="line">        Person p2 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;abc&quot;</span>); <span class="comment">// 因为性别是字符串,所以我们可以传入任意字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不使用枚举存在的问题：可以给性别传入任意的字符串，导致性别是非法的数据，不安全。</p>
+<h4 id="枚举的概念"><a href="#枚举的概念" class="headerlink" title="枚举的概念"></a>枚举的概念</h4><p>   枚举是一种引用数据类型,java中的枚举是有固定个数对象的”特殊类”。如果有些类的对象是固定个数的，就可以定义成枚举。比如性别,季节，方向。</p>
+<h4 id="定义枚举的格式"><a href="#定义枚举的格式" class="headerlink" title="定义枚举的格式"></a>定义枚举的格式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> 枚举名 </span>&#123;</span><br><span class="line">    <span class="comment">// 第一行都是罗列枚举实例,这些枚举实例直接写大写名字即可。</span></span><br><span class="line">    实例,实例,实例,...；</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Sex</span> </span>&#123;</span><br><span class="line">   BOY, GIRL; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Season</span> </span>&#123;</span><br><span class="line">    SPRING, SUMMER, AUTUMN, WINTER;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Direction</span></span>&#123; </span><br><span class="line">    UP, RIGHT, DOWN, LEFT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="枚举的使用"><a href="#枚举的使用" class="headerlink" title="枚举的使用"></a>枚举的使用</h4><ol>
+<li>定义枚举：BOY表示男，GIRL表示女</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Sex</span> </span>&#123;</span><br><span class="line">    BOY, GIRL; <span class="comment">// 男，女</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Perosn中的性别有String类型改为Sex枚举类型</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Sex sex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Sex sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 省略get/set/toString方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用是只能传入枚举中的固定值</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 使用枚举格式: 枚举类型.枚举值</span></span><br><span class="line">        Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, Sex.BOY);</span><br><span class="line">        Person p2 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, Sex.GIRL);</span><br><span class="line">        Person p3 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, <span class="string">&quot;abc&quot;</span>);<span class="comment">// 编译报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">枚举定义:</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> 枚举名</span>&#123;</span><br><span class="line">        枚举值,枚举值,枚举值,...</span><br><span class="line">    &#125;</span><br><span class="line">枚举的使用:</span><br><span class="line">	枚举类型 变量名 = 枚举名.枚举值;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="知识点–枚举的其他内容-听听就好"><a href="#知识点–枚举的其他内容-听听就好" class="headerlink" title="知识点–枚举的其他内容( 听听就好)"></a>知识点–枚举的其他内容( 听听就好)</h2><h3 id="目标-5"><a href="#目标-5" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>了解枚举的其他内容</li>
+</ul>
+<h3 id="路径-5"><a href="#路径-5" class="headerlink" title="路径"></a>路径</h3><h3 id="讲解-5"><a href="#讲解-5" class="headerlink" title="讲解"></a>讲解</h3><p>枚举的本质是一个使用了多例设计模式的类，所以枚举中还可以有成员变量，成员方法等。</p>
+<p>枚举的本质是一个类，我们刚才定义的Sex枚举最终效果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Sex</span> </span>&#123;</span><br><span class="line">    BOY, GIRL; <span class="comment">// 男，女</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Sex</span> </span>&#123;</span><br><span class="line">    BOY(<span class="number">18</span>), GIRL(<span class="number">16</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    Sex(<span class="keyword">int</span> age) &#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;年龄是: &quot;</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, Sex.BOY);</span><br><span class="line">        Person p2 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>, Sex.GIRL);</span><br><span class="line"></span><br><span class="line">        Sex.BOY.showAge();</span><br><span class="line">        Sex.GIRL.showAge();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/1566701678583.png" alt="1566701678583"></p>
+<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>略</li>
+</ul>
+<h1 id="第五章-工厂设计模式"><a href="#第五章-工厂设计模式" class="headerlink" title="第五章 工厂设计模式"></a>第五章 工厂设计模式</h1><h2 id="知识点–-工厂模式的概述"><a href="#知识点–-工厂模式的概述" class="headerlink" title="知识点– 工厂模式的概述"></a>知识点– 工厂模式的概述</h2><h3 id="目标-6"><a href="#目标-6" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>工厂模式其实就是用来帮我们创建对象的, 那么它到底有哪些特点, 我们来学习一下.</li>
+</ul>
+<h3 id="路径-6"><a href="#路径-6" class="headerlink" title="路径"></a>路径</h3><ul>
+<li>工厂模式的介绍</li>
+<li>工厂模式的作用</li>
+<li>案例演示</li>
+</ul>
+<h3 id="讲解-6"><a href="#讲解-6" class="headerlink" title="讲解"></a>讲解</h3><h4 id="工厂模式的介绍"><a href="#工厂模式的介绍" class="headerlink" title="工厂模式的介绍"></a>工厂模式的介绍</h4><p>​    工厂模式（Factory Pattern）是 Java 中最常用的设计模式之一。这种类型的设计模式<strong>属于创建型模式</strong>，它提供了一种创建对象的最佳方式。之前我们创建类对象时, 都是使用new 对象的形式创建, 除new 对象方式以外, 工厂模式也可以创建对象.</p>
+<p>耦合度: 类与类之间的关系,如果关系比较强,高耦合,  如果关系比较弱,低耦合,而<strong>开发是要尽量低耦合</strong></p>
+<p>10个类:</p>
+<p>10个测试类:  每个测试类都要创建这10个类的对象</p>
+<p>以前: 直接在测试类中通过new 来创建     这10个测试类和这10个类关系起来</p>
+<p>工厂模式: 定义一个类,专门用来创建这10个类的对象, 并提供获取的方法,那这个时候测试类只需要跟工厂类关联  低耦合</p>
+<h4 id="工厂模式的作用"><a href="#工厂模式的作用" class="headerlink" title="工厂模式的作用"></a>工厂模式的作用</h4><p>将前端代码与要创建的对象分开，前端不需要直接创建对象，也就不需要关心创建对象时需要的数据。只需要通过工厂获取对象即可。     </p>
+<ul>
+<li>解决类与类之间的耦合问题</li>
+</ul>
+<h4 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h4><h5 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h5><ol>
+<li>编写一个Car接口, 提供run方法</li>
+<li>编写一个Falali类实现Car接口,重写run方法</li>
+<li>编写一个Benchi类实现Car接口,重写run方法</li>
+</ol>
+<p>提供一个工厂类,可以用来生产汽车对象</p>
+<h5 id="实现代码-1"><a href="#实现代码-1" class="headerlink" title="实现代码"></a>实现代码</h5><p>1.编写一个Car接口, 提供run方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.编写一个Falali类实现Car接口,重写run方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Falali</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;法拉利以每小时500公里的速度在奔跑.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.编写一个Benchi类实现Car接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Benchi</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;奔驰汽车以每秒1米的速度在挪动.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.提供一个CarFactory(汽车工厂),用于生产汽车对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id : 车的标识</span></span><br><span class="line"><span class="comment">     *           benchi : 代表需要创建Benchi类对象</span></span><br><span class="line"><span class="comment">     *           falali : 代表需要创建Falali类对象</span></span><br><span class="line"><span class="comment">     *           如果传入的车标识不正确,代表当前工厂生成不了当前车对象,则返回null</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Car <span class="title">createCar</span><span class="params">(String id)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;falali&quot;</span>.equals(id))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Falali();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;benchi&quot;</span>.equals(id))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Benchi();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.定义CarFactoryTest测试汽车工厂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarFactoryTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CarFactory carFactory = <span class="keyword">new</span> CarFactory();</span><br><span class="line">        Car benchi = carFactory.createCar(<span class="string">&quot;benchi&quot;</span>);</span><br><span class="line">        benchi.run();</span><br><span class="line">        Car falali = carFactory.createCar(<span class="string">&quot;falali&quot;</span>);</span><br><span class="line">        falali.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>工厂模式的存在可以改变创建类的对象的方式,解决类与类之间的耦合.</li>
+</ul>
+<h1 id="第六章-Lombok【自学扩展】"><a href="#第六章-Lombok【自学扩展】" class="headerlink" title="第六章 Lombok【自学扩展】"></a>第六章 Lombok【自学扩展】</h1><h2 id="知识点–-Lombok的使用"><a href="#知识点–-Lombok的使用" class="headerlink" title="知识点– Lombok的使用"></a>知识点– Lombok的使用</h2><h3 id="目标-7"><a href="#目标-7" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>能够使用Lombok</li>
+</ul>
+<h3 id="路径-7"><a href="#路径-7" class="headerlink" title="路径"></a>路径</h3><ul>
+<li> lombok介绍</li>
+<li> lombok使用</li>
+</ul>
+<h3 id="讲解-7"><a href="#讲解-7" class="headerlink" title="讲解"></a>讲解</h3><p> lombok介绍</p>
+<ul>
+<li> lombok可以使用注解的方式让一些代码变的简洁 方便</li>
+<li> 实体类中有一些固定的代码：构造方法，getter/setter、equals、hashcode、toString方法都是固定的，写出来看着比较麻烦。而Lombok能通过注解的方式，在编译时自动为属性生成这些代码。</li>
+</ul>
+<p> lombok使用</p>
+<p>​    1. 添加lombox的jar包：</p>
+<p>​        将lombok.jar(本例使用版本：1.18.10)，添加到模块目录下，并添加到ClassPath</p>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232059055.png" alt="image-20200516232059055"></p>
+<p>​    2. 为IDEA添加lombok插件（<strong>连接网络使用）</strong></p>
+<ul>
+<li>第一步</li>
+</ul>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232559924.png" alt="image-20200516232559924"></p>
+<ul>
+<li>第二步：</li>
+</ul>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232640969.png" alt="image-20200516232640969"></p>
+<ul>
+<li>第三步：</li>
+</ul>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232706997.png" alt="image-20200516232706997"></p>
+<ul>
+<li>第四步：</li>
+</ul>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232729955.png" alt="image-20200516232729955"></p>
+<ol>
+<li><p><strong>安装完毕后，重启IDEA。</strong></p>
+</li>
+<li><p>新建一个类：Student</p>
+<p><img src="D:/Study/项目/黑猫/java基础/day17_单例-多例-枚举-工厂模式/day17_单例-多例-枚举-工厂模式/01_笔记/imgs/image-20200516232800944.png" alt="image-20200516232800944"></p>
+</li>
+</ol>
+<h4 id="lombok常用注解"><a href="#lombok常用注解" class="headerlink" title="lombok常用注解"></a>lombok常用注解</h4><ul>
+<li><p>@Getter和@Setter</p>
+<ul>
+<li>作用：生成成员变量的get和set方法。</li>
+<li>写在成员变量上，指对当前成员变量有效。</li>
+<li>写在类上，对所有成员变量有效。</li>
+<li>注意：静态成员变量无效。</li>
+</ul>
+</li>
+<li><p>@ToString：</p>
+<ul>
+<li>作用：生成toString()方法。</li>
+<li>该注解只能写在类上。</li>
+</ul>
+</li>
+<li><p>@NoArgsConstructor和@AllArgsConstructor</p>
+<ul>
+<li>@NoArgsConstructor：无参数构造方法。</li>
+<li>@AllArgsConstructor：满参数构造方法。</li>
+<li>注解只能写在类上。</li>
+</ul>
+</li>
+<li><p>@EqualsAndHashCode</p>
+<ul>
+<li>作用：生成hashCode()和equals()方法。</li>
+<li>注解只能写在类上。</li>
+</ul>
+</li>
+<li><p>@Data</p>
+<ul>
+<li><p>作用： 生成setter/getter、equals、hashCode、toString方法，如为final属性，则不会为该属性生成setter方法。 </p>
+</li>
+<li><p>注解只能写在类上。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结-7"><a href="#小结-7" class="headerlink" title="小结"></a>小结</h3><p>略</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">必须练习:</span><br><span class="line">	<span class="number">1.</span>单例设计模式</span><br><span class="line">    <span class="number">2.</span>多例设计模式</span><br><span class="line">    <span class="number">3.</span>枚举的定义和使用</span><br><span class="line">    <span class="number">4.</span>工厂设计模式</span><br><span class="line">        </span><br><span class="line">- 能够说出单例设计模式的好处</span><br><span class="line">   作用:保证使用该模式的类只有一个对象产生</span><br><span class="line">   步骤:</span><br><span class="line">	<span class="number">1.</span>将构造方法私有化</span><br><span class="line">    <span class="number">2.</span>在类的内部创建该类的唯一对象</span><br><span class="line">    <span class="number">3.</span>提供一个静态方法用来获取该类的唯一对象</span><br><span class="line">        </span><br><span class="line">- 能够说出多例模式的好处</span><br><span class="line">   作用:保证使用该模式的类只有固定数量个对象产生</span><br><span class="line">   步骤:</span><br><span class="line">	<span class="number">1.</span>将构造方法私有化</span><br><span class="line">    <span class="number">2.</span>在类的内部创建该类的固定数量个对象</span><br><span class="line">    <span class="number">3.</span>提供一个静态方法用来获取该类的对象</span><br><span class="line">        </span><br><span class="line">- 能够定义枚举</span><br><span class="line">   格式:</span><br><span class="line">		<span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> 枚举名</span>&#123;</span><br><span class="line">            枚举值,枚举值,...</span><br><span class="line">        &#125;</span><br><span class="line">   使用:</span><br><span class="line">		枚举类型 变量名 = 枚举名.枚举值;</span><br><span class="line"></span><br><span class="line">- 能够使用工厂模式编写java程序</span><br><span class="line">   作用:用来创建对象,实现对类的解耦操作</span><br><span class="line">   步骤:</span><br><span class="line">		<span class="number">1.</span>创建一个工厂类</span><br><span class="line">        <span class="number">2.</span>在工厂类中提供一个静态方法</span><br><span class="line">        <span class="number">3.</span>在静态方法中,创建对象,并返回(返回值类型多态)</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展-动态代理"><a href="#扩展-动态代理" class="headerlink" title="扩展-动态代理"></a>扩展-动态代理</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.demo8_动态代理加强;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>：pengzhilin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2020/9/27 11:23</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            对Collection接口进行代理，以前的remove(Object obj)方法是删除集合中第一次出现的元素</span></span><br><span class="line"><span class="comment">            (比如集合中有多个“abc”,调用remove(“abc”)后只会删除一个元素)。</span></span><br><span class="line"><span class="comment">            代理后，要求在调用remove(Object obj)方法后，能够删除集合中所有匹配的元素。【动态代理】</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// 创建ArrayList集合</span></span><br><span class="line">        Collection&lt;String&gt; col = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// 添加元素</span></span><br><span class="line">        col.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        col.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        col.add(<span class="string">&quot;bac&quot;</span>);</span><br><span class="line">        col.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        col.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        col.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;删除前:&quot;</span> + col);<span class="comment">// 删除前:[abc, abc, bac, abc, abc, abc]</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 动态代理增强remove方法</span></span><br><span class="line">        Collection&lt;String&gt; proxy = (Collection&lt;String&gt;) Proxy.newProxyInstance(col.getClass().getClassLoader(), col.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="comment">/*</span></span><br><span class="line"><span class="comment">                    invoke方法:</span></span><br><span class="line"><span class="comment">                        参数1proxy:表示生成的代理对象,一般不用</span></span><br><span class="line"><span class="comment">                        参数2method:表示代理对象调用的方法</span></span><br><span class="line"><span class="comment">                        参数3args:表示代理对象调用方法传入的实际参数</span></span><br><span class="line"><span class="comment">                        返回值:表示代理对象调用方法的返回值</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                <span class="comment">// 代理对象调用方法就会来到这里,所以增强方法的代码就写在这,就可以了</span></span><br><span class="line">                <span class="comment">// 被代理对象执行一次代理对象调用的方法,来确定返回值  删除一个</span></span><br><span class="line"></span><br><span class="line">                Object res = method.invoke(col, args);<span class="comment">// col.remove(&quot;abc&quot;)  col.toArray();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (method.getName().equals(<span class="string">&quot;remove&quot;</span>)) &#123;</span><br><span class="line">                    <span class="comment">// 删除剩余的</span></span><br><span class="line">                    <span class="comment">// 获取col集合对象的迭代器</span></span><br><span class="line">                    Iterator&lt;String&gt; it = col.iterator();</span><br><span class="line">                    <span class="comment">// 使用迭代器进行遍历</span></span><br><span class="line">                    <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">                        <span class="comment">// 在循环中,判断遍历出来的元素是否是要删除的元素</span></span><br><span class="line">                        String e = it.next();</span><br><span class="line">                        <span class="keyword">if</span> (e.equals(args[<span class="number">0</span>])) &#123;</span><br><span class="line">                            <span class="comment">// 如果是,就删除</span></span><br><span class="line">                            it.remove();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (method.getName().equals(<span class="string">&quot;toArray&quot;</span>)) &#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;增强toArray方法...&quot;</span>);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 代理对象删除元素</span></span><br><span class="line">        <span class="keyword">boolean</span> res = proxy.remove(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        System.out.println(res);<span class="comment">//true</span></span><br><span class="line">        System.out.println(<span class="string">&quot;删除后:&quot;</span> + col);<span class="comment">// 删除后:[bac]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Object[] arr = proxy.toArray();</span><br><span class="line">        System.out.println(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">        // 集合对象删除元素</span></span><br><span class="line"><span class="comment">        boolean res = col.remove(&quot;abc&quot;);</span></span><br><span class="line"><span class="comment">        System.out.println(res);// true</span></span><br><span class="line"><span class="comment">        System.out.println(&quot;删除后:&quot;+col);// 删除后:[abc, bac, abc, abc, abc]*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/springboot/" rel="tag"># springboot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/26/javascripts%E8%BF%9B%E9%98%B6/" rel="next" title="javascripts进阶">
+      javascripts进阶 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+  
+	  <div>
+	    <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>  # 添加内容
+	  </div>
+	
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day17-%E3%80%90%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E3%80%81%E5%A4%9A%E4%BE%8B%E6%A8%A1%E5%BC%8F%E3%80%81%E6%9E%9A%E4%B8%BE%E3%80%81%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">day17 【单例模式、多例模式、枚举、工厂模式】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">今日目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E5%AD%A6%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">教学目标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">第一章 单例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">知识点– 单例设计模式的概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">2.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3"><span class="nav-number">2.1.3.</span> <span class="nav-text">讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">单例设计模式的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">单例设计模式实现步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">例设计模式的类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">2.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93-%E9%A5%BF%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">知识点– 饿汉式单例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93-%E6%87%92%E6%B1%89%E5%BC%8F%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">知识点– 懒汉式单例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="nav-number">2.3.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A4%9A%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">第二章 多例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93%E5%A4%9A%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">知识点–多例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-3"><span class="nav-number">3.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-3"><span class="nav-number">3.1.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-3"><span class="nav-number">3.1.3.</span> <span class="nav-text">讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">多例设计模式的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">实现步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">实现代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-number">3.1.3.4.</span> <span class="nav-text">测试结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-3"><span class="nav-number">3.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%9E%9A%E4%B8%BE"><span class="nav-number">4.</span> <span class="nav-text">第四章 枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93%E6%9E%9A%E4%B8%BE%E7%9A%84%E6%A6%82%E8%BF%B0%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">知识点–枚举的概述和定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-4"><span class="nav-number">4.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-4"><span class="nav-number">4.1.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-4"><span class="nav-number">4.1.3.</span> <span class="nav-text">讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">不使用枚举存在的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">枚举的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.3.3.</span> <span class="nav-text">定义枚举的格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.1.3.4.</span> <span class="nav-text">枚举的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-4"><span class="nav-number">4.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9-%E5%90%AC%E5%90%AC%E5%B0%B1%E5%A5%BD"><span class="nav-number">4.2.</span> <span class="nav-text">知识点–枚举的其他内容( 听听就好)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-5"><span class="nav-number">4.2.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-5"><span class="nav-number">4.2.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-5"><span class="nav-number">4.2.3.</span> <span class="nav-text">讲解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-5"><span class="nav-number">4.2.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">第五章 工厂设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">知识点– 工厂模式的概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-6"><span class="nav-number">5.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-6"><span class="nav-number">5.1.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-6"><span class="nav-number">5.1.3.</span> <span class="nav-text">讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">工厂模式的介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">工厂模式的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA"><span class="nav-number">5.1.3.3.</span> <span class="nav-text">案例演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">5.1.3.3.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81-1"><span class="nav-number">5.1.3.3.2.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-6"><span class="nav-number">5.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-Lombok%E3%80%90%E8%87%AA%E5%AD%A6%E6%89%A9%E5%B1%95%E3%80%91"><span class="nav-number">6.</span> <span class="nav-text">第六章 Lombok【自学扩展】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E2%80%93-Lombok%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.1.</span> <span class="nav-text">知识点– Lombok的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87-7"><span class="nav-number">6.1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-7"><span class="nav-number">6.1.2.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E8%A7%A3-7"><span class="nav-number">6.1.3.</span> <span class="nav-text">讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lombok%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-number">6.1.3.1.</span> <span class="nav-text">lombok常用注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-7"><span class="nav-number">6.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">8.</span> <span class="nav-text">扩展-动态代理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Gsl"
+      src="/images/avatar2.png">
+  <p class="site-author-name" itemprop="name">Gsl</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+    </div>
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <div id="myCanvasContainer" class="widget tagcloud">
+    <canvas width="220" height="250" id="resCanvas" style="width=100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">1</span></li></ul>
+    </canvas>
+    </div>
+</div>
+
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gsl</span>
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">菜茹</a> 强力驱动</div>
+
+<br /> 
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/21/2021 15:54:40");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
+<!-- 页面点击小红心 --> 
+<script type="text/javascript" src="/js/clicklove.js"></script>

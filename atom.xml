@@ -6,7 +6,7 @@
   <link href="https://gsl6.github.io/atom.xml" rel="self"/>
   
   <link href="https://gsl6.github.io/"/>
-  <updated>2021-09-26T10:31:08.982Z</updated>
+  <updated>2021-09-26T11:03:10.460Z</updated>
   <id>https://gsl6.github.io/</id>
   
   <author>
@@ -17,17 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JavaScripts学习</title>
-    <link href="https://gsl6.github.io/2021/09/26/JavaScripts%E5%AD%A6%E4%B9%A0/"/>
-    <id>https://gsl6.github.io/2021/09/26/JavaScripts%E5%AD%A6%E4%B9%A0/</id>
-    <published>2021-09-26T10:28:53.000Z</published>
-    <updated>2021-09-26T10:31:08.982Z</updated>
+    <title>javascripts进阶</title>
+    <link href="https://gsl6.github.io/2021/09/26/javascripts%E8%BF%9B%E9%98%B6/"/>
+    <id>https://gsl6.github.io/2021/09/26/javascripts%E8%BF%9B%E9%98%B6/</id>
+    <published>2021-09-26T11:01:55.000Z</published>
+    <updated>2021-09-26T11:03:10.460Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;day17-【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;a href=&quot;#day17-【单例模式、多例模式、枚举、工厂模式】&quot; class=&quot;headerlink&quot; title=&quot;day17 【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;/a&gt;day17 【单例模式、多例模式、枚举、工厂模式】&lt;/h1&gt;</summary>
+    <summary type="html">javascripts进阶</summary>
     
     
     
+    <category term="java基础" scheme="https://gsl6.github.io/categories/java%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="前端" scheme="https://gsl6.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
