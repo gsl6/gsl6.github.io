@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog</title>
+  
+  
+  <link href="https://gsl6.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://gsl6.github.io/"/>
+  <updated>2021-09-26T10:31:08.982Z</updated>
+  <id>https://gsl6.github.io/</id>
+  
+  <author>
+    <name>Gsl</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScripts学习</title>
+    <link href="https://gsl6.github.io/2021/09/26/JavaScripts%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://gsl6.github.io/2021/09/26/JavaScripts%E5%AD%A6%E4%B9%A0/</id>
+    <published>2021-09-26T10:28:53.000Z</published>
+    <updated>2021-09-26T10:31:08.982Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;day17-【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;a href=&quot;#day17-【单例模式、多例模式、枚举、工厂模式】&quot; class=&quot;headerlink&quot; title=&quot;day17 【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;/a&gt;day17 【单例模式、多例模式、枚举、工厂模式】&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java基础</title>
+    <link href="https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/"/>
+    <id>https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/</id>
+    <published>2021-09-26T10:20:40.000Z</published>
+    <updated>2021-09-26T10:31:35.790Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;day17-【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;a href=&quot;#day17-【单例模式、多例模式、枚举、工厂模式】&quot; class=&quot;headerlink&quot; title=&quot;day17 【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;/a&gt;day17 【单例模式、多例模式、枚举、工厂模式】&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="java" scheme="https://gsl6.github.io/categories/java/"/>
+    
+    
+    <category term="springboot" scheme="https://gsl6.github.io/tags/springboot/"/>
+    
+  </entry>
+  
+</feed>

@@ -834,6 +834,11 @@ pre .javascript .function {
 .post-body .note.danger h6 {
   color: #d9534f;
 }
+.pdfobject-container iframe,
+.pdfobject-container embed {
+  height: 500px;
+  width: 100%;
+}
 .pagination .prev,
 .pagination .next,
 .pagination .page-number,
@@ -1200,7 +1205,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #01e4c9;
+  background: #e45bff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2707,4 +2712,23 @@ ul.breadcrumb li + li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("/images/background1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.headder-inner {
+  background: rgba(255,255,255,0.9);
+}
+.sidebar {
+  opacity: 0.9;
+}
+.content-wrap {
+  opacity: 0.9;
+}
+.popup {
+  opacity: 0.9;
 }
