@@ -6,7 +6,7 @@
   <link href="https://gsl6.github.io/atom.xml" rel="self"/>
   
   <link href="https://gsl6.github.io/"/>
-  <updated>2021-09-26T14:03:50.408Z</updated>
+  <updated>2021-09-27T17:03:02.686Z</updated>
   <id>https://gsl6.github.io/</id>
   
   <author>
@@ -17,86 +17,25 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>springboots2</title>
-    <link href="https://gsl6.github.io/2021/09/26/springboots2/"/>
-    <id>https://gsl6.github.io/2021/09/26/springboots2/</id>
-    <published>2021-09-26T14:03:33.000Z</published>
-    <updated>2021-09-26T14:03:50.408Z</updated>
+    <title>反射</title>
+    <link href="https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84/"/>
+    <id>https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-09-27T17:03:02.686Z</updated>
     
     
       
       
     <summary type="html">&lt;p&gt;&amp;lt;! –more–&amp;gt;&lt;/p&gt;
-</summary>
+&lt;h2 id=&quot;反射&quot;&gt;&lt;a href=&quot;#反射&quot; class=&quot;headerlink&quot; title=&quot;反射&quot;&gt;&lt;/a&gt;反射&lt;/h2&gt;&lt;h3 id=&quot;一-类加载器&quot;&gt;&lt;a href=&quot;#一-类加载器&quot; class=&quot;headerli</summary>
       
-    
-    
-    
-    <category term="javajichu" scheme="https://gsl6.github.io/categories/javajichu/"/>
-    
-    
-    <category term="java" scheme="https://gsl6.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue</title>
-    <link href="https://gsl6.github.io/2021/09/26/vue/"/>
-    <id>https://gsl6.github.io/2021/09/26/vue/</id>
-    <published>2021-09-26T14:02:39.000Z</published>
-    <updated>2021-09-26T14:03:10.875Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&amp;lt;! –more–&amp;gt;&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="js" scheme="https://gsl6.github.io/categories/js/"/>
-    
-    
-    <category term="js" scheme="https://gsl6.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascripts进阶</title>
-    <link href="https://gsl6.github.io/2021/09/26/javascripts%E8%BF%9B%E9%98%B6/"/>
-    <id>https://gsl6.github.io/2021/09/26/javascripts%E8%BF%9B%E9%98%B6/</id>
-    <published>2021-09-26T11:01:55.000Z</published>
-    <updated>2021-09-26T11:03:10.460Z</updated>
-    
-    
-    <summary type="html">javascripts进阶</summary>
     
     
     
     <category term="java基础" scheme="https://gsl6.github.io/categories/java%E5%9F%BA%E7%A1%80/"/>
     
     
-    <category term="前端" scheme="https://gsl6.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java基础</title>
-    <link href="https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/"/>
-    <id>https://gsl6.github.io/2021/09/26/java%E5%9F%BA%E7%A1%80/</id>
-    <published>2021-09-26T10:20:40.000Z</published>
-    <updated>2021-09-26T10:31:35.790Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;day17-【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;a href=&quot;#day17-【单例模式、多例模式、枚举、工厂模式】&quot; class=&quot;headerlink&quot; title=&quot;day17 【单例模式、多例模式、枚举、工厂模式】&quot;&gt;&lt;/a&gt;day17 【单例模式、多例模式、枚举、工厂模式】&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="java" scheme="https://gsl6.github.io/categories/java/"/>
-    
-    
-    <category term="springboot" scheme="https://gsl6.github.io/tags/springboot/"/>
+    <category term="反射" scheme="https://gsl6.github.io/tags/%E5%8F%8D%E5%B0%84/"/>
     
   </entry>
   
