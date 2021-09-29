@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>centos7配置</title>
+    <url>/2021/09/29/centos7%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>&lt;! –more–&gt;</p>
+<h2 id="centos7配置IP地址"><a href="#centos7配置IP地址" class="headerlink" title="centos7配置IP地址"></a>centos7配置IP地址</h2><p>centos7获取IP地址的方法主要有两种：</p>
+<h4 id="动态获取ip"><a href="#动态获取ip" class="headerlink" title="动态获取ip"></a>动态获取ip</h4><p>修改网卡配置文件 </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
+
+<p> (最后一个为网卡名称)</p>
+<p>动态获取IP地址需要修改两处地方即可</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bootproto=dhcp</span><br><span class="line">onboot=yes</span><br></pre></td></tr></table></figure>
+
+<p>修改后按Esc -&gt; shift+:  输入wq保存重启一下网络服务即可</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+
+<p>查看一下ip addr 就可以看到已经获取了IP地址</p>
+<h4 id="配置静态IP地址"><a href="#配置静态IP地址" class="headerlink" title="配置静态IP地址"></a>配置静态IP地址</h4><p>修改网卡配置文件<code>vi /etc/sysconfig/network-scripts/ifcfg-ens32</code> (最后一个为网卡名称)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bootproto=static</span><br><span class="line">onboot=yes</span><br><span class="line">在最后加上几行，IP地址、子网掩码、网关、dns服务器</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">IPADDR=192.168.1.160</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">DNS1=119.29.29.29</span><br><span class="line">DNS2=8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<p>重启网络服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决ping百度不通的问题："><a href="#解决ping百度不通的问题：" class="headerlink" title="解决ping百度不通的问题："></a>解决ping百度不通的问题：</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">编辑——&gt;虚拟网络编辑器--&gt;NAT设置--&gt;记住这个网关IP；</span><br><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens32 编辑里面的GATEWAY；这两个网关是同一个IP</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><h4 id="1-卸载系统之前的-docker"><a href="#1-卸载系统之前的-docker" class="headerlink" title="1.卸载系统之前的 docker"></a>1.卸载系统之前的 docker</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-安装必须的依赖"><a href="#2-安装必须的依赖" class="headerlink" title="2.安装必须的依赖"></a>2.安装必须的依赖</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-设置-docker-repo-的-yum-位置"><a href="#3-设置-docker-repo-的-yum-位置" class="headerlink" title="3.设置 docker repo 的 yum 位置"></a>3.设置 docker repo 的 yum 位置</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-安装-docker，以及-docker-cli"><a href="#4-安装-docker，以及-docker-cli" class="headerlink" title="4.安装 docker，以及 docker-cli"></a>4.安装 docker，以及 docker-cli</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-启动-docker-并将其设置为开机启动"><a href="#5-启动-docker-并将其设置为开机启动" class="headerlink" title="5.启动 docker;并将其设置为开机启动"></a>5.启动 docker;并将其设置为开机启动</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-配置-docker-镜像加速"><a href="#6-配置-docker-镜像加速" class="headerlink" title="6.配置 docker 镜像加速"></a>6.配置 docker 镜像加速</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://wv9ylvrk.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>通过 <strong>uname -r</strong> 命令查看你当前的内核版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -r   </span><br></pre></td></tr></table></figure>
+
+<p>查看docker版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>启动 Docker 服务;并将其设置为开机启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br><span class="line">systemctl enable docker.service</span><br></pre></td></tr></table></figure>
+
+<p>列出镜像列表</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>卸载docker</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker*</span><br></pre></td></tr></table></figure>
+
+<p>查看安装过的包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum list installed | grep docker</span><br></pre></td></tr></table></figure>
+
+<p>删除安装的Docker相关的软件包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y remove docker.x86_64</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;registry-mirrors&quot;: [&quot;https://wv9ylvrk.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker中安装mysql"><a href="#docker中安装mysql" class="headerlink" title="docker中安装mysql"></a>docker中安装mysql</h2><h4 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-mysql"><a href="#2-mysql" class="headerlink" title="2.mysql"></a>2.mysql</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -p 3306:3306 --name mysql \</span><br><span class="line">-v /mydata/mysql/log:/var/log/mysql \</span><br><span class="line">-v /mydata/mysql/data:/var/lib/mysql \</span><br><span class="line">-v /mydata/mysql/conf:/etc/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=root \</span><br><span class="line">-d mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<h4 id="进入容器查看配置："><a href="#进入容器查看配置：" class="headerlink" title="进入容器查看配置："></a>进入容器查看配置：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it mysql /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-修改配置"><a href="#3-修改配置" class="headerlink" title="3.修改配置"></a>3.修改配置</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /mydata/mysql/conf/my.cnf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">init_connect=&#x27;SET collation_connection = utf8_unicode_ci&#x27;</span><br><span class="line">init_connect=&#x27;SET NAMES utf8&#x27;</span><br><span class="line">character-set-server=utf8</span><br><span class="line">collation-server=utf8_unicode_ci</span><br><span class="line">skip-character-set-client-handshake</span><br><span class="line">skip-name-resolve</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-重启mysql"><a href="#4-重启mysql" class="headerlink" title="4.重启mysql"></a>4.重启mysql</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker restart mysql</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-设置启动docker时，即运行mysql"><a href="#5-设置启动docker时，即运行mysql" class="headerlink" title="5.设置启动docker时，即运行mysql"></a>5.设置启动docker时，即运行mysql</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker update mysql --restart=always</span><br></pre></td></tr></table></figure>
+
+<p>进入mysql交互模式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it mysql /bin/bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /etc/mysql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat my.cnf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker中安装redis"><a href="#docker中安装redis" class="headerlink" title="docker中安装redis"></a>docker中安装redis</h2><h4 id="1-下载-1"><a href="#1-下载-1" class="headerlink" title="1.下载"></a>1.下载</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实例并启动"><a href="#2-创建实例并启动" class="headerlink" title="2.创建实例并启动"></a>2.创建实例并启动</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p /mydata/redis/conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /mydata/redis/conf/redis.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -p 6379:6379 --name redis -v /mydata/redis/data:/data \</span><br><span class="line">-v/mydata/redis/conf/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">-d redis redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p> 连接到docker的redis</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it redis redis-cli</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-设置redis容器在docker启动的时候启动"><a href="#3-设置redis容器在docker启动的时候启动" class="headerlink" title="3.设置redis容器在docker启动的时候启动"></a>3.设置redis容器在docker启动的时候启动</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start redis</span><br><span class="line">docker update redis --restart=always</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>centos7/docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>反射</title>
     <url>/2021/09/28/%E5%8F%8D%E5%B0%84/</url>
     <content><![CDATA[<p>&lt;! –more–&gt;</p>

@@ -6,7 +6,7 @@
   <link href="https://gsl6.github.io/atom.xml" rel="self"/>
   
   <link href="https://gsl6.github.io/"/>
-  <updated>2021-09-27T17:03:02.686Z</updated>
+  <updated>2021-09-29T14:24:46.747Z</updated>
   <id>https://gsl6.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos7配置</title>
+    <link href="https://gsl6.github.io/2021/09/29/centos7%E9%85%8D%E7%BD%AE/"/>
+    <id>https://gsl6.github.io/2021/09/29/centos7%E9%85%8D%E7%BD%AE/</id>
+    <published>2021-09-29T14:22:54.000Z</published>
+    <updated>2021-09-29T14:24:46.747Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&amp;lt;! –more–&amp;gt;&lt;/p&gt;
+&lt;h2 id=&quot;centos7配置IP地址&quot;&gt;&lt;a href=&quot;#centos7配置IP地址&quot; class=&quot;headerlink&quot; title=&quot;centos7配置IP地址&quot;&gt;&lt;/a&gt;centos7配置IP地址&lt;/h2&gt;&lt;p&gt;ce</summary>
+      
+    
+    
+    
+    <category term="linux" scheme="https://gsl6.github.io/categories/linux/"/>
+    
+    
+    <category term="centos7/docker" scheme="https://gsl6.github.io/tags/centos7-docker/"/>
+    
+  </entry>
   
   <entry>
     <title>反射</title>
