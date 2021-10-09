@@ -22,15 +22,20 @@
     var CONFIG = {"hostname":"gsl6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="https://gsl6.github.io/archives/2021/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Spring Security">
+<meta property="og:url" content="https://gsl6.github.io/2021/09/28/Spring%20Security/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:/Fsn/Hexo/themes/next/source/images/mdImage/1.PNG">
+<meta property="article:published_time" content="2021-09-27T17:00:51.000Z">
+<meta property="article:modified_time" content="2021-10-09T16:19:45.445Z">
 <meta property="article:author" content="Gsl">
+<meta property="article:tag" content="Spring Security">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/Fsn/Hexo/themes/next/source/images/mdImage/1.PNG">
 
-<link rel="canonical" href="https://gsl6.github.io/archives/2021/">
+<link rel="canonical" href="https://gsl6.github.io/2021/09/28/Spring%20Security/">
 
 
 <script id="page-configurations">
@@ -38,7 +43,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
@@ -76,7 +81,7 @@
   });
 </script>
 
-  <title>归档 | Blog</title>
+  <title>Spring Security | Blog</title>
   
 
 
@@ -214,191 +219,230 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 8 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2021/09/28/Spring%20Security/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.png">
+      <meta itemprop="name" content="Gsl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring Security
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-28 01:00:51" itemprop="dateCreated datePublished" datetime="2021-09-28T01:00:51+08:00">2021-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-10 00:19:45" itemprop="dateModified" datetime="2021-10-10T00:19:45+08:00">2021-10-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
+        <p><em><span id="more"></span></em></p>
+<h1 id="Spring-Security"><a href="#Spring-Security" class="headerlink" title="Spring Security"></a>Spring Security</h1><h2 id="一-入门"><a href="#一-入门" class="headerlink" title="一.入门"></a>一.入门</h2><h4 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1.新建项目"></a>1.新建项目</h4><p>首先新建一个 <code>Spring Boot</code> 项目，创建时引入 <code>Spring Security</code> 依赖和 <code>Spring web</code> 依赖；</p>
+<p>项目创建成功后，我们添加一个测试的 <code>HelloController</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloControlle</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>直接来启动项目,在项目启动过程中，我们会看到如下一行日志:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Using generated security password: fbc2d816-116c-<span class="number">4412</span>-83f9-eedf6de20480</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-29T22:22:54+08:00"
-              content="2021-09-29">
-          09-29
-        </time>
-      </div>
+<p>这就是 <code>Spring Security</code> 为默认用户 <code>user</code> 生成的临时密码，是一个 <code>UUID</code> 字符串.</p>
+<p>接下来我们访问<code>localhost:8080/hello</code> 接口，就可以看到自动重定向到登录页面:</p>
+<img src="D:\Fsn\Hexo\themes\next\source\images\mdImage\1.PNG" style="zoom:40%;" />
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/29/centos7%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">centos7配置</span>
-          </a>
-      </div>
+<p>在 <code>Spring Security</code> 中，默认的登录页面和登录接口，都是 <code>/login</code> ，只不过一个是 <code>get</code> 请求（登录页面），另一个是 <code>post</code> 请求（登录接口）.</p>
+<p>查看源码在<code>org.springframework.boot.autoconfigure.security.servlet</code>包下有和用户相关的自动化配置类在 <code>UserDetailsServiceAutoConfiguration</code> 里边，在该类的 <code>getOrDeducePassword</code> 方法中:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (user.isPasswordGenerated()) &#123;</span><br><span class="line">	logger.info(String.format(<span class="string">&quot;%n%nUsing generated security password: %s%n&quot;</span>, user.getPassword()));&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
+<p>在控制台看到的日志就是从这里打印出来的。打印的条件是 <code>isPasswordGenerated</code>方法返回 <code>true</code>，即密码是默认生成的;</p>
+<p>进而我们发现，<code>user.getPassword</code> 出现在 <code>SecurityProperties</code> 中，在 <code>SecurityProperties</code> 中我们看到如下定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name = <span class="string">&quot;user&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> String password = UUID.randomUUID().toString();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> passwordGenerated = <span class="keyword">true</span>;</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>可以看到，默认的用户名就是 <code>user</code>，默认的密码则是 <code>UUID</code>，而默认情况下，<code>passwordGenerated</code> 也为 <code>true</code>。</p>
+<h4 id="2-用户配置"><a href="#2-用户配置" class="headerlink" title="2.用户配置"></a>2.用户配置</h4><p>在<code>SecurityProperties</code>中默认的用户就定义在它里边，是一个静态内部类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name = <span class="string">&quot;user&quot;</span>;</span><br><span class="line">	<span class="keyword">private</span> String password = UUID.randomUUID().toString();</span><br><span class="line">	<span class="keyword">private</span> List&lt;String&gt; roles = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> passwordGenerated = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
+<p>我们如果要定义自己的用户名密码，必然是要去覆盖默认配置;</p>
+<p>先来看下<code> SecurityProperties</code> 的定义:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;spring.security&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityProperties</span> </span>&#123;..&#125;</span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/Spring%20Security/" itemprop="url">
-            <span itemprop="name">Spring Security</span>
-          </a>
-      </div>
+<p>只需要以<code>spring.security.user</code>为前缀，去定义用户名密码即可:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.security.user.name=金闪闪</span><br><span class="line">spring.security.user.password=<span class="number">123</span></span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
+<p>在<code>application.properties</code>中定义的用户名密码最终是通过 <code>set</code> 方法注入到属性中去的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//源码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (!StringUtils.hasLength(password)) &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">this</span>.passwordGenerated = <span class="keyword">false</span>;</span><br><span class="line">			<span class="keyword">this</span>.password = password;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>我们可以看到，<code>application</code>.properties 中定义的密码在注入进来之后，还顺便设置了 <code>passwordGenerated</code> 属性为 <code>false</code>，这个属性设置为<code>false</code>之后，控制台就不会打印默认的密码了.</p>
+<h4 id="3-加密方案"><a href="#3-加密方案" class="headerlink" title="3.加密方案"></a>3.加密方案</h4><p>在 <code>Spring Security</code> 中，<code>BCryptPasswordEncoder</code> 就自带了盐，处理起来非常方便。<code>BCryptPasswordEncoder</code> 就是 <code>PasswordEncoder </code>接口的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BCryptPasswordEncoder</span> <span class="keyword">implements</span> <span class="title">PasswordEncoder</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
+<p><code>PasswordEncoder</code> 这个接口中就定义了三个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PasswordEncoder</span> </span>&#123;</span><br><span class="line">	<span class="function">String <span class="title">encode</span><span class="params">(CharSequence rawPassword)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(CharSequence rawPassword, String 							encodedPassword)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">upgradeEncoding</span><span class="params">(String encodedPassword)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//encode 方法用来对明文密码进行加密，返回加密之后的密文。</span></span><br><span class="line"><span class="comment">//matches 方法是一个密码校对方法，在用户登录的时候，将用户传来的明文密码和数据库中保存的密文密码作为参数，传入到这个方法中去，根据返回的 Boolean 值判断用户密码是否输入正确。</span></span><br><span class="line"><span class="comment">//upgradeEncoding 是否还要进行再次加密，默认不用</span></span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/SpringCloud%20Alibab/" itemprop="url">
-            <span itemprop="name">SpringCloud Alibab</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/%E5%8F%8D%E5%B0%84%20-%20%E5%89%AF%E6%9C%AC/" itemprop="url">
-            <span itemprop="name">反射</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/linux%E5%AE%89%E8%A3%85dubbo/" itemprop="url">
-            <span itemprop="name">linux安装dubbo</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/%E5%8F%8D%E5%B0%84/" itemprop="url">
-            <span itemprop="name">反射</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/%E9%A1%B5%E9%9D%A2%E6%9D%BE%E6%A0%A1%E9%AA%8C/" itemprop="url">
-            <span itemprop="name">页面松校验</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-28T01:00:51+08:00"
-              content="2021-09-28">
-          09-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/28/%E6%95%B4%E5%90%88mybatis-plus/" itemprop="url">
-            <span itemprop="name">整合mybatis-plus</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<h4 id="4-加密配置"><a href="#4-加密配置" class="headerlink" title="4.加密配置"></a>4.加密配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line">publicclass SecurityConfig extends WebSecurityConfigurerAdapter &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">PasswordEncoder <span class="title">passwordEncoder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> NoOpPasswordEncoder.getInstance();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        auth.inMemoryAuthentication()</span><br><span class="line">                .withUser(<span class="string">&quot;金闪闪&quot;</span>)</span><br><span class="line">                .password(<span class="string">&quot;123&quot;</span>).roles(<span class="string">&quot;admin&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//首先我们自定义 SecurityConfig 继承自 WebSecurityConfigurerAdapter，重写里边的 configure 方法</span></span><br><span class="line"><span class="comment">//首先我们提供了一个 PasswordEncoder 的实例，因为目前的案例还比较简单，因此我暂时先不给密码进行加密，所以返回 NoOpPasswordEncoder 的实例即可</span></span><br><span class="line"><span class="comment">//configure方法中，我们通过inMemoryAuthentication 来开启在内存中定义用户，withUser中是用户名，password 中则是用户密码，roles 中是用户角色</span></span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spring-Security/" rel="tag"># Spring Security</a>
+          </div>
+        <script type="text/javascript">
+           var tagsall=document.getElementsByClassName("post-tags")
+           for (var i = tagsall.length - 1; i >= 0; i--){
+               var tags=tagsall[i].getElementsByTagName("a");
+               for (var j = tags.length - 1; j >= 0; j--) {
+                   var golden_ratio = 0.618033988749895;
+                   var s = 0.5;
+                   var v = 0.999;
+                   var h = golden_ratio + Math.random()*0.8 - 0.5;
+                   var h_i = parseInt(h * 6);
+                   var f = h * 6 - h_i;
+                   var p = v * (1 - s);
+                   var q = v * (1 - f * s);
+                   var t = v * (1 - (1 - f) * s);
+                   var r, g, b;
+                   switch (h_i) {
+                       case 0:
+                           r = v;
+                           g = t;
+                           b = p;
+                           break;
+                       case 1:
+                           r = q;
+                           g = v;
+                           b = p;
+                           break;
+                       case 2:
+                           r = p;
+                           g = v;
+                           b = t;
+                           break;
+                       case 3 :
+                           r = p;
+                           g = q;
+                           b = v;
+                           break;
+                       case 4:
+                           r = t;
+                           g = p;
+                           b = v;
+                           break;
+                       case 5:
+                           r = v;
+                           g = p;
+                           b = q;
+                           break;
+                       default:
+                           r = 1;
+                           g = 1;
+                           b = 1;
+                     }
+                   tags[j].style.background = "rgba("+parseInt(r*255)+","+parseInt(g*255)+","+parseInt(b*255)+","+0.5+")";
+               }
+           }                        
+           </script>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/28/SpringCloud%20Alibab/" rel="prev" title="SpringCloud Alibab">
+      <i class="fa fa-chevron-left"></i> SpringCloud Alibab
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/29/centos7%E9%85%8D%E7%BD%AE/" rel="next" title="centos7配置">
+      centos7配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
+  
+  
+  
+	  <div>
+	    <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>  # 添加内容
+	  </div>
+	
 
 
 
@@ -450,6 +494,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Security"><span class="nav-number">1.</span> <span class="nav-text">Spring Security</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%85%A5%E9%97%A8"><span class="nav-number">1.1.</span> <span class="nav-text">一.入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1.新建项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2.用户配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3.加密方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8A%A0%E5%AF%86%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">4.加密配置</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

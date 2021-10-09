@@ -36,6 +36,82 @@
   </entry>
   
   <entry>
+    <title>Spring Security</title>
+    <link href="https://gsl6.github.io/2021/09/28/Spring%20Security/"/>
+    <id>https://gsl6.github.io/2021/09/28/Spring%20Security/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-10-09T16:19:45.445Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="spring" scheme="https://gsl6.github.io/categories/spring/"/>
+    
+    
+    <category term="Spring Security" scheme="https://gsl6.github.io/tags/Spring-Security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud Alibab</title>
+    <link href="https://gsl6.github.io/2021/09/28/SpringCloud%20Alibab/"/>
+    <id>https://gsl6.github.io/2021/09/28/SpringCloud%20Alibab/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-10-09T16:21:35.579Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="spring" scheme="https://gsl6.github.io/categories/spring/"/>
+    
+    
+    <category term="SpringCloud Alibab" scheme="https://gsl6.github.io/tags/SpringCloud-Alibab/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>反射</title>
+    <link href="https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84%20-%20%E5%89%AF%E6%9C%AC/"/>
+    <id>https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84%20-%20%E5%89%AF%E6%9C%AC/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-09-29T14:46:01.264Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="java基础" scheme="https://gsl6.github.io/categories/java%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="反射" scheme="https://gsl6.github.io/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux安装dubbo</title>
+    <link href="https://gsl6.github.io/2021/09/28/linux%E5%AE%89%E8%A3%85dubbo/"/>
+    <id>https://gsl6.github.io/2021/09/28/linux%E5%AE%89%E8%A3%85dubbo/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-10-09T16:18:30.299Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="dubbo" scheme="https://gsl6.github.io/categories/dubbo/"/>
+    
+    
+    <category term="linux" scheme="https://gsl6.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>反射</title>
     <link href="https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84/"/>
     <id>https://gsl6.github.io/2021/09/28/%E5%8F%8D%E5%B0%84/</id>
@@ -51,6 +127,44 @@
     
     
     <category term="反射" scheme="https://gsl6.github.io/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>页面松校验</title>
+    <link href="https://gsl6.github.io/2021/09/28/%E9%A1%B5%E9%9D%A2%E6%9D%BE%E6%A0%A1%E9%AA%8C/"/>
+    <id>https://gsl6.github.io/2021/09/28/%E9%A1%B5%E9%9D%A2%E6%9D%BE%E6%A0%A1%E9%AA%8C/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-10-09T16:22:40.444Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="spring" scheme="https://gsl6.github.io/categories/spring/"/>
+    
+    
+    <category term="pom" scheme="https://gsl6.github.io/tags/pom/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>整合mybatis-plus</title>
+    <link href="https://gsl6.github.io/2021/09/28/%E6%95%B4%E5%90%88mybatis-plus/"/>
+    <id>https://gsl6.github.io/2021/09/28/%E6%95%B4%E5%90%88mybatis-plus/</id>
+    <published>2021-09-27T17:00:51.000Z</published>
+    <updated>2021-10-09T16:23:18.838Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;em&gt;</summary>
+    
+    
+    
+    <category term="spring" scheme="https://gsl6.github.io/categories/spring/"/>
+    
+    
+    <category term="mybatis-plus" scheme="https://gsl6.github.io/tags/mybatis-plus/"/>
     
   </entry>
   
