@@ -25,7 +25,7 @@
   <meta name="description" content="redis常用数据类型：string  字符串  字符串最大存储容量512M list 可以重复 set 不可重复 hash  类似Map&lt;string,string&gt; zset  为什么Redis需要把所有数据放到内存中为了达到最快读写速度将数据读到内存中，并通过异步的方式将数据写到磁盘； 如果设置了最大使用内存，数据已有记录数达到内存限值后不能继续插入新值 Redis提供了哪几种持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Blog">
-<meta property="og:url" content="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A/index.html">
+<meta property="og:url" content="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="redis常用数据类型：string  字符串  字符串最大存储容量512M list 可以重复 set 不可重复 hash  类似Map&lt;string,string&gt; zset  为什么Redis需要把所有数据放到内存中为了达到最快读写速度将数据读到内存中，并通过异步的方式将数据写到磁盘； 如果设置了最大使用内存，数据已有记录数达到内存限值后不能继续插入新值 Redis提供了哪几种持">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:author" content="Gsl">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A/">
+<link rel="canonical" href="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -111,8 +111,8 @@
   </style>
 </noscript>
 
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style><link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -225,7 +225,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A/">
+    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar2.png">
