@@ -343,7 +343,7 @@
   <entry>
     <title></title>
     <url>/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: redis常用数据类型</span><br><span class="line">date: 2021-09-29 22:22:54</span><br><span class="line">tags: centos7</span><br><span class="line">categories: linux</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: redis</span><br><span class="line">date: 2021-09-28 01:00:51</span><br><span class="line">tags:  redis</span><br><span class="line">categories: spring</span><br></pre></td></tr></table></figure>
 
 <p><em><span id="more"></span></em></p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h5 id="redis常用数据类型："><a href="#redis常用数据类型：" class="headerlink" title="redis常用数据类型："></a>redis常用数据类型：</h5><p>string  字符串  字符串最大存储容量512M</p>
