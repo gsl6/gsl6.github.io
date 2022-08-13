@@ -318,29 +318,6 @@
       </tags>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/2021/09/26/index/</url>
-    <content><![CDATA[<p><em><span id="more"></span></em></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h5 id="redis常用数据类型："><a href="#redis常用数据类型：" class="headerlink" title="redis常用数据类型："></a>redis常用数据类型：</h5><p>string  字符串  字符串最大存储容量512M</p>
-<p>list 可以重复</p>
-<p>set 不可重复</p>
-<p>hash  类似Map&lt;string,string&gt;</p>
-<p>zset </p>
-<h5 id="为什么Redis需要把所有数据放到内存中"><a href="#为什么Redis需要把所有数据放到内存中" class="headerlink" title="为什么Redis需要把所有数据放到内存中"></a>为什么Redis需要把所有数据放到内存中</h5><p>为了达到最快读写速度将数据读到内存中，并通过异步的方式将数据写到磁盘；</p>
-<p>如果设置了最大使用内存，数据已有记录数达到内存限值后不能继续插入新值</p>
-<h5 id="Redis提供了哪几种持久化方式"><a href="#Redis提供了哪几种持久化方式" class="headerlink" title="Redis提供了哪几种持久化方式"></a>Redis提供了哪几种持久化方式</h5><p>RDB持久化：每隔一段时间将内存中的数据集写到磁盘</p>
-<p>​                     redis会单独创建一个子进程来进行持久化，会将数据先保存到临时文件，待持久化过程结束后，用这个临时文件替换上次持久化好的文件，整个过程主线程不进行IO操作</p>
-<p>​                  保存策略：</p>
-<p>​                        save 300 10  300秒内如果至少有10个key的值变化，则保存</p>
-<p>AOF持久化：以日志形式记录每个更新操作</p>
-<p>​                redis重新启动时读取这个文件，重新执行新建，修改数据的命令恢复数据</p>
-<p>​                保存策略：</p>
-<p>​                        appendfsync always: 每次产生一条新的修改命令都执行保存操作</p>
-<p>​                        appendfsync everysec: 每秒执行一次保存操作   默认</p>
-<p>​                        appendfsync no:从不保存</p>
-]]></content>
-  </entry>
-  <entry>
     <title>并行垃圾收集器(The Parallel Garbage Collector)</title>
     <url>/2021/09/28/%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%20-%20Java/</url>
     <content><![CDATA[<p><em><span id="more"></span></em></p>
