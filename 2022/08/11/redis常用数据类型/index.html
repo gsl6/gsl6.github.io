@@ -22,19 +22,18 @@
     var CONFIG = {"hostname":"gsl6.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="1234title: 并行垃圾收集器(The Parallel Garbage Collector)date: 2021-09-28 01:00:51tags:  jvmcategories: java基础">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Blog">
-<meta property="og:url" content="https://gsl6.github.io/2022/08/13/%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%20-%20Java/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="redis常用数据类型和持久化">
+<meta property="og:url" content="https://gsl6.github.io/2022/08/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="1234title: 并行垃圾收集器(The Parallel Garbage Collector)date: 2021-09-28 01:00:51tags:  jvmcategories: java基础">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-13T09:56:43.029Z">
-<meta property="article:modified_time" content="2022-08-13T10:24:18.692Z">
+<meta property="article:published_time" content="2022-08-11T01:00:51.000Z">
+<meta property="article:modified_time" content="2022-08-13T10:52:31.460Z">
 <meta property="article:author" content="Gsl">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://gsl6.github.io/2022/08/13/%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%20-%20Java/">
+<link rel="canonical" href="https://gsl6.github.io/2022/08/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -80,7 +79,7 @@
   });
 </script>
 
-  <title> | Blog</title>
+  <title>redis常用数据类型和持久化 | Blog</title>
   
 
 
@@ -225,7 +224,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2022/08/13/%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%20-%20Java/">
+    <link itemprop="mainEntityOfPage" href="https://gsl6.github.io/2022/08/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar2.png">
@@ -238,7 +237,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          redis常用数据类型和持久化
         </h1>
 
         <div class="post-meta">
@@ -247,9 +246,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-13 17:56:43 / 修改时间：18:24:18" itemprop="dateCreated datePublished" datetime="2022-08-13T17:56:43+08:00">2022-08-13</time>
+              <time title="创建时间：2022-08-11 09:00:51" itemprop="dateCreated datePublished" datetime="2022-08-11T09:00:51+08:00">2022-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-13 18:52:31" itemprop="dateModified" datetime="2022-08-13T18:52:31+08:00">2022-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
             </span>
 
           
@@ -265,7 +279,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>596</span>
+              <span>484</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -284,15 +298,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 并行垃圾收集器(The Parallel Garbage Collector)</span><br><span class="line">date: 2021-09-28 01:00:51</span><br><span class="line">tags:  jvm</span><br><span class="line">categories: java基础</span><br></pre></td></tr></table></figure>
-
-<p><em><span id="more"></span></em></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h4 id="并行垃圾收集器-GC-之所以如此命名，是因为它可以利用多个线程来处理-GC-任务，它提供了-OpenJDK-上可用的最高-GC-吞吐量"><a href="#并行垃圾收集器-GC-之所以如此命名，是因为它可以利用多个线程来处理-GC-任务，它提供了-OpenJDK-上可用的最高-GC-吞吐量" class="headerlink" title="并行垃圾收集器 (GC) 之所以如此命名，是因为它可以利用多个线程来处理 GC 任务，它提供了 OpenJDK 上可用的最高 GC 吞吐量"></a>并行垃圾收集器 (GC) 之所以如此命名，是因为它可以利用多个线程来处理 GC 任务，它提供了 OpenJDK 上可用的最高 GC 吞吐量</h4><h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><h2 id="使用并行-GC："><a href="#使用并行-GC：" class="headerlink" title="使用并行 GC："></a>使用并行 GC：</h2><h4 id="可以使用-VM-参数启用并行-GC-。如前所述，并行-GC-提供了-OpenJDK-上可用-GC-的最高吞吐量；串行-GC、G1-GC-和-Z-GC，但这确实是以暂停时间和内存占用为代价的。因此，在决定使用-Parallel-GC-时要考虑这些影响。-XX-UseParallel-GC"><a href="#可以使用-VM-参数启用并行-GC-。如前所述，并行-GC-提供了-OpenJDK-上可用-GC-的最高吞吐量；串行-GC、G1-GC-和-Z-GC，但这确实是以暂停时间和内存占用为代价的。因此，在决定使用-Parallel-GC-时要考虑这些影响。-XX-UseParallel-GC" class="headerlink" title="可以使用 VM 参数启用并行 GC 。如前所述，并行 GC 提供了 OpenJDK 上可用 GC 的最高吞吐量；串行 GC、G1 GC 和 Z GC，但这确实是以暂停时间和内存占用为代价的。因此，在决定使用 Parallel GC 时要考虑这些影响。-XX:+UseParallel GC"></a>可以使用 VM 参数启用并行 GC 。如前所述，并行 GC 提供了 OpenJDK 上可用 GC 的最高吞吐量；串行 GC、G1 GC 和 Z GC，但这确实是以暂停时间和内存占用为代价的。因此，在决定使用 Parallel GC 时要考虑这些影响。<code>-XX:+UseParallel GC</code></h4><h5 id="-2"><a href="#-2" class="headerlink" title=""></a></h5><h2 id="调整并行-GC："><a href="#调整并行-GC：" class="headerlink" title="调整并行 GC："></a>调整并行 GC：</h2><h4 id="调整并行-GC-的选项有很多；需要考虑的几个关键选项如下："><a href="#调整并行-GC-的选项有很多；需要考虑的几个关键选项如下：" class="headerlink" title="调整并行 GC 的选项有很多；需要考虑的几个关键选项如下："></a>调整并行 GC 的选项有很多；需要考虑的几个关键选项如下：</h4><ul>
-<li><code>MaxPauseTimeMillis</code>：这向 GC 提供了一个提示，即暂停时间应小于提供的数量。没有为此标志设置默认值。</li>
-<li><code>GCTimeRatio</code>：这设置了执行 GC 工作和应用程序工作之间花费的时间比率。默认值设置为 1 到 99。</li>
-<li><code>Parallel GCThreads</code>：这设置可用于执行 GC 工作的线程数。默认值基于从可用系统资源确定的 HotSpot 人体工程学。请参阅下面的链接。</li>
-<li><code>+UseStringDeduplication</code>：在 JDK 18 中，字符串重复数据删除已从 G1 GC 移植到 Parallel GC。启用字符串重复数据删除可以将内存占用减少约 10%，但可能会影响暂停时间</li>
-</ul>
+        <p><em><span id="more"></span></em></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h5 id="redis常用数据类型："><a href="#redis常用数据类型：" class="headerlink" title="redis常用数据类型："></a>redis常用数据类型：</h5><p>string  字符串  字符串最大存储容量512M</p>
+<p>list 可以重复</p>
+<p>set 不可重复</p>
+<p>hash  类似Map&lt;string,string&gt;</p>
+<p>zset </p>
+<h5 id="为什么Redis需要把所有数据放到内存中"><a href="#为什么Redis需要把所有数据放到内存中" class="headerlink" title="为什么Redis需要把所有数据放到内存中"></a>为什么Redis需要把所有数据放到内存中</h5><p>为了达到最快读写速度将数据读到内存中，并通过异步的方式将数据写到磁盘；</p>
+<p>如果设置了最大使用内存，数据已有记录数达到内存限值后不能继续插入新值</p>
+<h5 id="Redis提供了哪几种持久化方式"><a href="#Redis提供了哪几种持久化方式" class="headerlink" title="Redis提供了哪几种持久化方式"></a>Redis提供了哪几种持久化方式</h5><p>RDB持久化：每隔一段时间将内存中的数据集写到磁盘</p>
+<p>​                     redis会单独创建一个子进程来进行持久化，会将数据先保存到临时文件，待持久化过程结束后，用这个临时文件替换上次持久化好的文件，整个过程主线程不进行IO操作</p>
+<p>​                  保存策略：</p>
+<p>​                        save 300 10  300秒内如果至少有10个key的值变化，则保存</p>
+<p>AOF持久化：以日志形式记录每个更新操作</p>
+<p>​                redis重新启动时读取这个文件，重新执行新建，修改数据的命令恢复数据</p>
+<p>​                保存策略：</p>
+<p>​                        appendfsync always: 每次产生一条新的修改命令都执行保存操作</p>
+<p>​                        appendfsync everysec: 每秒执行一次保存操作   默认</p>
+<p>​                        appendfsync no:从不保存                    </p>
 
     </div>
 
@@ -301,6 +324,64 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/redis/" rel="tag"># redis</a>
+          </div>
+        <script type="text/javascript">
+           var tagsall=document.getElementsByClassName("post-tags")
+           for (var i = tagsall.length - 1; i >= 0; i--){
+               var tags=tagsall[i].getElementsByTagName("a");
+               for (var j = tags.length - 1; j >= 0; j--) {
+                   var golden_ratio = 0.618033988749895;
+                   var s = 0.5;
+                   var v = 0.999;
+                   var h = golden_ratio + Math.random()*0.8 - 0.5;
+                   var h_i = parseInt(h * 6);
+                   var f = h * 6 - h_i;
+                   var p = v * (1 - s);
+                   var q = v * (1 - f * s);
+                   var t = v * (1 - (1 - f) * s);
+                   var r, g, b;
+                   switch (h_i) {
+                       case 0:
+                           r = v;
+                           g = t;
+                           b = p;
+                           break;
+                       case 1:
+                           r = q;
+                           g = v;
+                           b = p;
+                           break;
+                       case 2:
+                           r = p;
+                           g = v;
+                           b = t;
+                           break;
+                       case 3 :
+                           r = p;
+                           g = q;
+                           b = v;
+                           break;
+                       case 4:
+                           r = t;
+                           g = p;
+                           b = v;
+                           break;
+                       case 5:
+                           r = v;
+                           g = p;
+                           b = q;
+                           break;
+                       default:
+                           r = 1;
+                           g = 1;
+                           b = 1;
+                     }
+                   tags[j].style.background = "rgba("+parseInt(r*255)+","+parseInt(g*255)+","+parseInt(b*255)+","+0.5+")";
+               }
+           }                        
+           </script>
 
         
 
@@ -308,8 +389,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/10/11/redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/2021/09/29/centos7%E9%85%8D%E7%BD%AE/" rel="prev" title="centos7配置">
+      <i class="fa fa-chevron-left"></i> centos7配置
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -383,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8-GC-%E4%B9%8B%E6%89%80%E4%BB%A5%E5%A6%82%E6%AD%A4%E5%91%BD%E5%90%8D%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E5%AE%83%E5%8F%AF%E4%BB%A5%E5%88%A9%E7%94%A8%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9D%A5%E5%A4%84%E7%90%86-GC-%E4%BB%BB%E5%8A%A1%EF%BC%8C%E5%AE%83%E6%8F%90%E4%BE%9B%E4%BA%86-OpenJDK-%E4%B8%8A%E5%8F%AF%E7%94%A8%E7%9A%84%E6%9C%80%E9%AB%98-GC-%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">1.0.1.</span> <span class="nav-text">并行垃圾收集器 (GC) 之所以如此命名，是因为它可以利用多个线程来处理 GC 任务，它提供了 OpenJDK 上可用的最高 GC 吞吐量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-1"><span class="nav-number">1.0.2.</span> <span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B9%B6%E8%A1%8C-GC%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">使用并行 GC：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8-VM-%E5%8F%82%E6%95%B0%E5%90%AF%E7%94%A8%E5%B9%B6%E8%A1%8C-GC-%E3%80%82%E5%A6%82%E5%89%8D%E6%89%80%E8%BF%B0%EF%BC%8C%E5%B9%B6%E8%A1%8C-GC-%E6%8F%90%E4%BE%9B%E4%BA%86-OpenJDK-%E4%B8%8A%E5%8F%AF%E7%94%A8-GC-%E7%9A%84%E6%9C%80%E9%AB%98%E5%90%9E%E5%90%90%E9%87%8F%EF%BC%9B%E4%B8%B2%E8%A1%8C-GC%E3%80%81G1-GC-%E5%92%8C-Z-GC%EF%BC%8C%E4%BD%86%E8%BF%99%E7%A1%AE%E5%AE%9E%E6%98%AF%E4%BB%A5%E6%9A%82%E5%81%9C%E6%97%B6%E9%97%B4%E5%92%8C%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E4%B8%BA%E4%BB%A3%E4%BB%B7%E7%9A%84%E3%80%82%E5%9B%A0%E6%AD%A4%EF%BC%8C%E5%9C%A8%E5%86%B3%E5%AE%9A%E4%BD%BF%E7%94%A8-Parallel-GC-%E6%97%B6%E8%A6%81%E8%80%83%E8%99%91%E8%BF%99%E4%BA%9B%E5%BD%B1%E5%93%8D%E3%80%82-XX-UseParallel-GC"><span class="nav-number">2.0.1.</span> <span class="nav-text">可以使用 VM 参数启用并行 GC 。如前所述，并行 GC 提供了 OpenJDK 上可用 GC 的最高吞吐量；串行 GC、G1 GC 和 Z GC，但这确实是以暂停时间和内存占用为代价的。因此，在决定使用 Parallel GC 时要考虑这些影响。-XX:+UseParallel GC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#-2"><span class="nav-number">2.0.1.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E5%B9%B6%E8%A1%8C-GC%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">调整并行 GC：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E5%B9%B6%E8%A1%8C-GC-%E7%9A%84%E9%80%89%E9%A1%B9%E6%9C%89%E5%BE%88%E5%A4%9A%EF%BC%9B%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E9%80%89%E9%A1%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">3.0.1.</span> <span class="nav-text">调整并行 GC 的选项有很多；需要考虑的几个关键选项如下：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#redis%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">redis常用数据类型：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Redis%E9%9C%80%E8%A6%81%E6%8A%8A%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E6%94%BE%E5%88%B0%E5%86%85%E5%AD%98%E4%B8%AD"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">为什么Redis需要把所有数据放到内存中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redis%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E5%87%A0%E7%A7%8D%E6%8C%81%E4%B9%85%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Redis提供了哪几种持久化方式</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -406,13 +487,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -428,7 +509,7 @@
 <div class="widget-wrap">
     <div id="myCanvasContainer" class="widget tagcloud">
     <canvas width="220" height="250" id="resCanvas" style="width=100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/" rel="tag">Spring Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud-Alibab/" rel="tag">SpringCloud Alibab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis-plus/" rel="tag">mybatis-plus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pom/" rel="tag">pom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Security/" rel="tag">Spring Security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud-Alibab/" rel="tag">SpringCloud Alibab</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis-plus/" rel="tag">mybatis-plus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pom/" rel="tag">pom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a><span class="tag-list-count">1</span></li></ul>
     </canvas>
     </div>
 <!-- 加入粒子时钟 -->
